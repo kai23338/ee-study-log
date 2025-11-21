@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        
+        <div class="mb-3">
+            <a href="{{ url_for('home') }}" class="text-white-50 small">
+                <i class="bi bi-arrow-left"></i> 返回画廊
+            </a>
+        </div>
+
+        {% if post.media_filename %}
+            <div class="glass-card p-2 mb-4 text-center">
+                {% if post.media_type == 'image' %}
+                    <img src="{{ url_for('static', filename='uploads/' + post.media_filename) }}" 
+                         class="img-fluid rounded" 
+                         style="max-height: 80vh; width: auto;"
+                         alt="{{ post.title }}">
+                {% elif post.media_type == 'video' %}
+                    <div class="ratio ratio-16x9">
+                        <video controls autoplay muted class="rounded">
+                            <source src="{{ url_for('static', filename='uploads/' + post.media_filename) }}" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="glass-card p-4 p-md-5">
+            <div class="mb-4 border-bottom border-secondary pb-3">
+                <span class="badge bg-gradient bg-info text-dark mb-2">{{ post.topic }}</span>
+                <h1 class="fw-bold">{{ post.title }}</h1>
+                <div class="text-white-50 small">
+                    <i class="bi bi-calendar-event"></i> {{ post.date_posted.strftime('%Y-%m-%d %H:%M') }}
+                </div>
+            </div>
+
+            <div class="post-content text-white-50" style="font-size: 1.1rem; line-height: 1.8;">
+                {{ content_html | safe }}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

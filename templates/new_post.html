@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        
+        <div class="glass-card p-4 p-md-5">
+            <h2 class="text-center mb-4 fw-light">记录新篇章</h2>
+            
+            {% if error %}
+                <div class="alert alert-danger bg-danger bg-opacity-25 text-white border-0">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" enctype="multipart/form-data">
+                
+                <div class="mb-4">
+                    <label class="form-label text-white-50 small">标题</label>
+                    <input type="text" name="title" class="form-control form-control-lg bg-transparent text-white border-secondary" placeholder="今日高压电实验..." required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label text-white-50 small">分类标签</label>
+                    <input type="text" name="topic" class="form-control bg-transparent text-white border-secondary" value="日常记录">
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label text-white-50 small">上传媒体 (图片/视频)</label>
+                    <input class="form-control bg-transparent text-white border-secondary" type="file" name="media_file" accept="image/*,video/*">
+                    <div class="form-text text-white-50">支持 JPG, PNG, MP4, MOV 等格式</div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label text-white-50 small">文字感想 (Markdown)</label>
+                    <textarea name="content" class="form-control bg-transparent text-white border-secondary" rows="6" placeholder="写点什么..."></textarea>
+                </div>
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-gradient btn-lg rounded-pill">
+                        发 布
+                    </button>
+                    <a href="{{ url_for('home') }}" class="btn btn-link text-white-50 mt-2">取消</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

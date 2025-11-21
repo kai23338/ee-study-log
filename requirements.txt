@@ -1,0 +1,11 @@
+Flask
+Flask-CORS
+Flask-SQLAlchemy
+markdown              # 用于渲染 MarkDown
+gunicorn              # 生产级Web服务器
+psycopg2-binary       # PostgreSQL数据库连接器
+itsdangerous
+werkzeug
+jinja2
+click
+markupsafe
